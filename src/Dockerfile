@@ -16,7 +16,7 @@ ARG XMRIG_VERSION=latest
 ARG XMRIG_BUILD_ARGS="-DCMAKE_BUILD_TYPE=Release"
 
 WORKDIR /xmrig
-# Clone XMRIG-MO
+#  Clone XMRIG-MO
 RUN git clone https://github.com/MoneroOcean/xmrig && \
     # I'm sorry :(
     sed -i 's/kMinimumDonateLevel = 1;/kMinimumDonateLevel = 0;/g' ./src/donate.h && \
