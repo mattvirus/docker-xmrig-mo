@@ -9,7 +9,7 @@ This image clones `https://github.com/MoneroOcean/xmrig` and builds it according
 Append any `xmrig` params after the image name. i.e:
 
 ```shell
-docker run -it --rm lchaia/xmrig-mo --url randomx-benchmark.xmrig.com:7777 --algo rx/test
+docker run -it --rm mattvirus/xmrig-mo --url randomx-benchmark.xmrig.com:7777 --algo rx/test
 ```
 
 ## Docker Compose example
