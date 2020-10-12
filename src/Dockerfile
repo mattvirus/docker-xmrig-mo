@@ -21,7 +21,8 @@ RUN git clone https://github.com/MoneroOcean/xmrig && \
     # I'm sorry :(
     sed -i 's/kMinimumDonateLevel = 1;/kMinimumDonateLevel = 0;/g' ./src/donate.h && \
     mkdir build && \
-    cmake ${XMRIG_BUILD_ARGS} . && \
+#    cmake ${XMRIG_BUILD_ARGS} . && \
+    cmake .. && \
     make && \
     ./xmrig --help
 
