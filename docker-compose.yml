@@ -2,7 +2,7 @@ version: "3"
 
 services:
   xmrig-mo:
-    image: lchaia/xmrig-mo:v5.0.0-mo1
+    image: mattvirus/xmrig-mo:latest
     container_name: xmrig
     build:
       context: ./src
