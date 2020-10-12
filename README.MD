@@ -19,7 +19,7 @@ version: "3"
 
 services:
   xmrig:
-    image: lchaia/xmrig-mo
+    image: mattvirus/xmrig-mo
     command: -c /xmrig/config.json --url gulf.moneroocean.stream:10001 --coin monero
     volumes:
       - ./xmrig-config.json:/xmrig/config.json
