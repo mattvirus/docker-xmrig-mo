@@ -1,46 +1,13 @@
-ARG ALPINE_VERSION=3.10
-FROM lchaia/alpine-gcc:7.4.0 as builder
+FROM ubuntu:xenial
 
-RUN apk --no-cache add \
-    libuv-dev \
-    openssl-dev \
-    libmicrohttpd \
-    git \
-    cmake
+RUN apt-get -y update && \
+    apt-get -y upgrade
 
-RUN apk --no-cache add \
-    --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-    hwloc-dev
-
-ARG XMRIG_VERSION=latest
-ARG XMRIG_BUILD_ARGS="-DCMAKE_BUILD_TYPE=Release"
-
-WORKDIR /xmrig
-#  Clone XMRIG-MO
+RUN apt-get install -y git build-essential cmake make libuv1-dev libmicrohttpd-dev gcc g++ \
+        automake autoconf pkg-config libcurl4-openssl-dev libjansson-dev libssl-dev libgmp-dev 
+    
 RUN git clone https://github.com/MoneroOcean/xmrig && \
-    # I'm sorry :(
-    #sed -i 's/kMinimumDonateLevel = 1;/kMinimumDonateLevel = 0;/g' ./src/donate.h && \
-    mkdir build && \
-#    cmake ${XMRIG_BUILD_ARGS} . && \
+    cd xmrig && mkdir build && cd build && \
     cmake .. && \
     make && \
-    ./xmrig --help
-
-FROM alpine:${ALPINE_VERSION}
-
-COPY --from=builder /xmrig/xmrig /bin/
-
-RUN apk --no-cache add \
-    libuv-dev 
-
-RUN apk --no-cache add \
-    --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-    hwloc-dev
-
-RUN adduser -S -D -H -h /xmrig miner
-RUN xmrig --help
-
-USER miner
-
-ENTRYPOINT ["xmrig"]
-CMD [ "--help" ]
+    mv xmrig /usr/local/bin
