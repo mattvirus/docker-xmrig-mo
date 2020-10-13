@@ -19,7 +19,7 @@ WORKDIR /xmrig
 #  Clone XMRIG-MO
 RUN git clone https://github.com/MoneroOcean/xmrig && \
     # I'm sorry :(
-    sed -i 's/kMinimumDonateLevel = 1;/kMinimumDonateLevel = 0;/g' ./src/donate.h && \
+    #sed -i 's/kMinimumDonateLevel = 1;/kMinimumDonateLevel = 0;/g' ./src/donate.h && \
     mkdir build && \
 #    cmake ${XMRIG_BUILD_ARGS} . && \
     cmake .. && \
